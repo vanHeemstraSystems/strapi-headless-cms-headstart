@@ -164,11 +164,11 @@ You will be prompted as follows:
 
 ```
 Creating a project with custom database options.
-Creating a new Strapi application at /Users/willemvanheemstra/git/mongodb-headstart/containers/app/cms.
+Creating a new Strapi application at /Users/willemvanheemstra/git/strapi-headless-cms-headstart/containers/app/cms.
 Creating files.
 Dependencies installed successfully.
 
-Your application was created at /Users/willemvanheemstra/git/mongodb-headstart/containers/app/cms.
+Your application was created at /Users/willemvanheemstra/git/strapi-headless-cms-headstart/containers/app/cms.
 
 Available commands in your project:
 
@@ -186,7 +186,7 @@ Available commands in your project:
   
 You can start by doing:
 
-  cd /Users/willemvanheemstra/git/mongodb-headstart/containers/app/cms
+  cd /Users/willemvanheemstra/git/strapi-headless-cms-headstart/containers/app/cms
   yarn develop
   
 Done in 2754.12s.  
