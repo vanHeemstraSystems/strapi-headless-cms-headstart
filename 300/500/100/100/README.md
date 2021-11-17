@@ -40,7 +40,13 @@ Use your down arrow key and select **Custom (manual settings)** and press enter:
 > Custom (manual settings) 
 ```
 
+When asked to use a template, choose **n** for No:
 
+```
+? Choose your installation type (Use arrow keys): Custom (manual settings)
+? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) (Y/n)
+n
+```
 
 
 
