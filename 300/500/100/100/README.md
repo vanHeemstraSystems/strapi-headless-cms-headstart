@@ -2,13 +2,11 @@
 
 ## 100 - Install Create React App globally
 
-```
-$ npm install -g create-react-app@3.4.1
-```
+Not applicable.
 
 ## 200 - Setup the directory structure
 
-Not applicable
+Not applicable.
 
 ## 300 - Generate a new app
 
