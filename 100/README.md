@@ -1,6 +1,6 @@
 # 100 - Introduction
 
-In our companion project **[pwc-strapi-head-of-cms-headstart](https://github.com/vanHeemstraSystems/strapi-head-of-cms-headstart)** will use have the Graphical User Interface for this Headless Content Management System. 
+In our companion project **[strapi-head-of-cms-headstart](https://github.com/vanHeemstraSystems/strapi-head-of-cms-headstart)** will use have the Graphical User Interface for this Headless Content Management System. 
 
 Updated April 2020
 
