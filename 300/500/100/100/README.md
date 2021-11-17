@@ -32,7 +32,13 @@ $ cd cms
 
 You will need to do a manual install of Strapi (not quickstart) in order to use MongoDB.
 
-Use your down arrow key and select Custom (manual settings) and press enter:
+Use your down arrow key and select **Custom (manual settings)** and press enter:
+
+```
+? Choose your installation type (Use arrow keys)
+  Quickstart (recommended)
+> Custom (manual settings) 
+```
 
 
 
