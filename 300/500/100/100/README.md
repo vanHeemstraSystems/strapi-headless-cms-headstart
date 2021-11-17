@@ -60,13 +60,13 @@ Select **mongo** from the list with the arrow keys and enter.
 > mongo  
 ```
 
-Select **cms-dev** for the database name (as we start with a development setup):
+Select **MongoDB-Dev** for the database name (as we start with a development setup):
 
 ```
 ? Choose your installation type (Use arrow keys): Custom (manual settings)
 ? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) No
 ? Choose your default database client: mongo
-? Database name: (cms) cms-dev
+? Database name: (cms) MongoDB-Dev
 ```
 
 Enter **127.0.0.1** for a local database host (***Note***: adjust if your mongo database host for development runs at a different ip address):
@@ -75,7 +75,7 @@ Enter **127.0.0.1** for a local database host (***Note***: adjust if your mongo 
 ? Choose your installation type (Use arrow keys): Custom (manual settings)
 ? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) No
 ? Choose your default database client: mongo
-? Database name: cms-dev
+? Database name: MongoDB-Dev
 ? Host: (127.0.0.1) 127.0.0.1
 ```
 
@@ -85,7 +85,7 @@ Enter **false** for a + server connection:
 ? Choose your installation type (Use arrow keys): Custom (manual settings)
 ? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) No
 ? Choose your default database client: mongo
-? Database name: cms-dev
+? Database name: MongoDB-Dev
 ? Host: 127.0.0.1
 ? +srv connection: (false) false
 ```
@@ -96,7 +96,7 @@ Enter **28016** for a the port of the mongo database host for development:
 ? Choose your installation type (Use arrow keys): Custom (manual settings)
 ? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) No
 ? Choose your default database client: mongo
-? Database name: cms-dev
+? Database name: MongoDB-Dev
 ? Host: 127.0.0.1
 ? +srv connection: false
 ? Port (It will be ignored if you enable +srv): (27017) 28016
@@ -108,7 +108,7 @@ Enter **mongo_root** for a the mongo database host user name for development:
 ? Choose your installation type (Use arrow keys): Custom (manual settings)
 ? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) No
 ? Choose your default database client: mongo
-? Database name: cms-dev
+? Database name: MongoDB-Dev
 ? Host: 127.0.0.1
 ? +srv connection: false
 ? Port (It will be ignored if you enable +srv): 28016
@@ -121,7 +121,7 @@ Enter **mongo_root()** for a the mongo database host user password for developme
 ? Choose your installation type (Use arrow keys): Custom (manual settings)
 ? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) No
 ? Choose your default database client: mongo
-? Database name: cms-dev
+? Database name: MongoDB-Dev
 ? Host: 127.0.0.1
 ? +srv connection: false
 ? Port (It will be ignored if you enable +srv): 28016
@@ -135,7 +135,7 @@ Enter **admin** for a the mongo authentication database for development:
 ? Choose your installation type (Use arrow keys): Custom (manual settings)
 ? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) No
 ? Choose your default database client: mongo
-? Database name: cms-dev
+? Database name: MongoDB-Dev
 ? Host: 127.0.0.1
 ? +srv connection: false
 ? Port (It will be ignored if you enable +srv): 28016
@@ -150,7 +150,7 @@ Enter **N** for No for enabling SSL connection with the mongo database for devel
 ? Choose your installation type (Use arrow keys): Custom (manual settings)
 ? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) No
 ? Choose your default database client: mongo
-? Database name: cms-dev
+? Database name: MongoDB-Dev
 ? Host: 127.0.0.1
 ? +srv connection: false
 ? Port (It will be ignored if you enable +srv): 28016
@@ -159,6 +159,40 @@ Enter **N** for No for enabling SSL connection with the mongo database for devel
 ? Authentication database (Maybe "admin" or blank): admin
 ? Enable SSL connection: (y/N): N
 ```
+
+You will be prompted as follows:
+
+```
+Creating a project with custom database options.
+Creating a new Strapi application at /Users/willemvanheemstra/git/mongodb-headstart/containers/app/cms.
+Creating files.
+Dependencies installed successfully.
+
+Your application was created at /Users/willemvanheemstra/git/mongodb-headstart/containers/app/cms.
+
+Available commands in your project:
+
+  yarn develop
+  Start Strapi in watch mode.
+  
+  yarn start
+  Start Strapi without watch mode.
+  
+  yarn build
+  Build Strapi admin panel.
+  
+  yarn strapi
+  Display all available commands.
+  
+You can start by doing:
+
+  cd /Users/willemvanheemstra/git/mongodb-headstart/containers/app/cms
+  yarn develop
+  
+Done in 2754.12s.  
+```
+
+Congratulations !!
 
 
 
