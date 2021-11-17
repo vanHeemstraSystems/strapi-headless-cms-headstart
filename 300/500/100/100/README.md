@@ -14,7 +14,7 @@ Not applicable.
 
 Having a frontend is good, but your app obviously needs a backend to manage users, restaurants, dishes and orders. To make the magic happen, let's create a Strapi API.
 
-***Requirements***: please make sure to use version >=Node 9 and have either MongoDB, Postgres or MySQL installed and running on your machine. Here we will be using MongoDB.
+***Requirements***: please make sure to use version >=Node 9 and have either MongoDB, Postgres or MySQL installed and running on your machine. Here we will be using MongoDB, so make sure you have MongoDB up and running as explained in https://github.com/vanHeemstraSystems/mongodb-headstart.
 
 ***Note***: We will actually install **only** the **backend (Strapi code)** here, as the front end will be installed in https://github.com/vanHeemstraSystems/strapi-head-of-cms-headstart.
 
@@ -29,6 +29,10 @@ $ cd containers/app
 $ yarn create strapi-app cms
 $ cd cms
 ```
+
+You will need to do a manual install of Strapi (not quickstart) in order to use MongoDB.
+
+Use your down arrow key and select Custom (manual settings) and press enter:
 
 
 
