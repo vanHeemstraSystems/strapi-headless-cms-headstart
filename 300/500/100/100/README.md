@@ -60,6 +60,63 @@ Select **mongo** from the list with the arrow keys and enter.
 > mongo  
 ```
 
+Select **cms-dev** for the database name (as we start with a development setup):
+
+```
+? Choose your installation type (Use arrow keys): Custom (manual settings)
+? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) No
+? Choose your default database client: mongo
+? Database name: (cms) cms-dev
+```
+
+Enter **127.0.0.1** for a local database host (***Note***: adjust if your mongo database host for development runs at a different ip address):
+
+```
+? Choose your installation type (Use arrow keys): Custom (manual settings)
+? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) No
+? Choose your default database client: mongo
+? Database name: cms-dev
+? Host: (127.0.0.1) 127.0.0.1
+```
+
+Enter **false** for a + server connection:
+
+```
+? Choose your installation type (Use arrow keys): Custom (manual settings)
+? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) No
+? Choose your default database client: mongo
+? Database name: cms-dev
+? Host: 127.0.0.1
+? +srv connection: (false) false
+```
+
+Enter **28016** for a the port of the mongo database host for development:
+
+```
+? Choose your installation type (Use arrow keys): Custom (manual settings)
+? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) No
+? Choose your default database client: mongo
+? Database name: cms-dev
+? Host: 127.0.0.1
+? +srv connection: false
+? Port (It will be ignored if you enable +srv): (27017) 28016
+```
+
+Enter **mongo_root** for a the mongo database host user for development:
+
+```
+? Choose your installation type (Use arrow keys): Custom (manual settings)
+? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) No
+? Choose your default database client: mongo
+? Database name: cms-dev
+? Host: 127.0.0.1
+? +srv connection: false
+? Port (It will be ignored if you enable +srv): 28016
+? Username: mongo_root
+```
+
+
+
 
 == WE ARE HERE ==
 
