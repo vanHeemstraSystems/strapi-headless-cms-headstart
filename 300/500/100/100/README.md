@@ -48,6 +48,17 @@ When asked to use a template, choose **n** for No:
 n
 ```
 
+Select **mongo** from the list with the arrow keys and enter.
+
+```
+? Choose your installation type (Use arrow keys): Custom (manual settings)
+? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) No
+? Choose your default database client (Use arrow keys)
+  sqlite
+  postgres
+  mysql
+> mongo  
+```
 
 
 == WE ARE HERE ==
