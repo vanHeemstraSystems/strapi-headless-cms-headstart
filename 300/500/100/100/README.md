@@ -214,6 +214,35 @@ $ cd containers/app/cms
 $ yarn develop
 ```
 
+You will need to do a manual install of Strapi (not quickstart) in order to use MongoDB.
 
+Use your down arrow key and select Custom (manual settings) and press enter:
+
+manual install
+
+Select mongo from the list with the arrow keys and enter.
+
+mongo
+
+Press enter through all the settings to select the default, should look like:
+
+manaul
+
+Once all the Strapi dependencies are installed navigate to the backend folder and run yarn develop:
+
+$ cd backend
+$ yarn develop
+Strapi start
+
+Starting now, you should be able to visit the admin panel of your project: http://localhost:1337/admin.
+
+Full Strapi Mongo instructions here:
+https://strapi.io/documentation/3.0.0-beta.x/guides/databases.html#sqlite-installation
+
+To start your Strapi server in the future, navigate to the backend folder and run yarn develop
+
+### Create your first User
+
+Add your first user from the registration page.
 
 == WE ARE HERE ==
