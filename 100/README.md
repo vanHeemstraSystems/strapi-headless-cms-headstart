@@ -53,4 +53,4 @@ Table of contents
 - 🔐 Authentication (part 4)
 - 🛒 Shopping Card (part 5)
 - 💵 Order and Checkout (part 6)
-- 🚀 Bonus: Deploy (part 7)tra
+- 🚀 Bonus: Deploy (part 7)
