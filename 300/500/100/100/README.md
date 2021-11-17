@@ -102,7 +102,7 @@ Enter **28016** for a the port of the mongo database host for development:
 ? Port (It will be ignored if you enable +srv): (27017) 28016
 ```
 
-Enter **mongo_root** for a the mongo database host user for development:
+Enter **mongo_root** for a the mongo database host user name for development:
 
 ```
 ? Choose your installation type (Use arrow keys): Custom (manual settings)
@@ -115,6 +115,50 @@ Enter **mongo_root** for a the mongo database host user for development:
 ? Username: mongo_root
 ```
 
+Enter **mongo_root()** for a the mongo database host user password for development:
+
+```
+? Choose your installation type (Use arrow keys): Custom (manual settings)
+? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) No
+? Choose your default database client: mongo
+? Database name: cms-dev
+? Host: 127.0.0.1
+? +srv connection: false
+? Port (It will be ignored if you enable +srv): 28016
+? Username: mongo_root
+? Password: mongo_root()
+```
+
+Enter **admin** for a the mongo authentication database for development:
+
+```
+? Choose your installation type (Use arrow keys): Custom (manual settings)
+? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) No
+? Choose your default database client: mongo
+? Database name: cms-dev
+? Host: 127.0.0.1
+? +srv connection: false
+? Port (It will be ignored if you enable +srv): 28016
+? Username: mongo_root
+? Password: mongo_root()
+? Authentication database (Maybe "admin" or blank): admin
+```
+
+Enter **N** for No for enabling SSL connection with the mongo database for development:
+
+```
+? Choose your installation type (Use arrow keys): Custom (manual settings)
+? Would you like to use a template? (Templates are Strapi configurations designed for a specific use case) No
+? Choose your default database client: mongo
+? Database name: cms-dev
+? Host: 127.0.0.1
+? +srv connection: false
+? Port (It will be ignored if you enable +srv): 28016
+? Username: mongo_root
+? Password: mongo_root()
+? Authentication database (Maybe "admin" or blank): admin
+? Enable SSL connection: (y/N): N
+```
 
 
 
