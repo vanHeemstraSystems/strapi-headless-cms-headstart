@@ -24,11 +24,12 @@ Having a frontend is good, but your app obviously needs a backend to manage user
 
 Install ```yarn``` [here](https://yarnpkg.com/lang/en/docs/install/#mac-stable) if you do not have it:
 
-Go back to the app directory of your project and create a folder called ```cms``` and install strapi with:
+Inside the subdirectory /containers/app/ created a new app called '***cms***':
 
 ```
 $ cd containers/app
 $ yarn create strapi-app cms
+$ cd cms
 ```
 
 
@@ -37,10 +38,3 @@ $ yarn create strapi-app cms
 
 == WE ARE HERE ==
 
-Inside the subdirectory /containers/app/ created a new app called '***cms***':
-
-```
-$ cd containers/app
-$ npm init react-app cms --use-npm
-$ cd cms
-```
