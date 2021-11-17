@@ -194,7 +194,26 @@ Done in 2754.12s.
 
 Congratulations !!
 
+Once all the Strapi dependencies are installed navigate to the ```cms``` folder and run ```yarn develop```:
+
+```
+$ cd containers/app/cms
+$ yarn develop
+```
+
+Starting now, you should be able to visit the ```admin``` panel of your project: http://localhost:1337/admin.
+
+Full Strapi Mongo instructions here:
+https://strapi.io/documentation/3.0.0-beta.x/guides/databases.html#sqlite-installation
+
+
+To start your Strapi server in the future, navigate to the ```cms``` folder and run ```yarn develop```:
+
+```
+$ cd containers/app/cms
+$ yarn develop
+```
+
 
 
 == WE ARE HERE ==
-
