@@ -17,5 +17,16 @@ You should be able to visit the ```admin``` panel of your project: http://localh
 
 Add your first user from the registration page.
 
+For the time being, enter your personal details as the first user (which will have administrator full access and privileges for now).
+
+Hence, in my own case:
+
+First name: **Willem**
+Last name: **van Heemstra**
+Email: **wvanheemstra@icloud.com**
+Password: ```== not showing here ==```
+Confirmation Password: ```== not showing here ==```
+
+
 
 == WE ARE HERE ==
