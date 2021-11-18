@@ -9,7 +9,7 @@ $ cd containers/app/cms
 $ yarn develop
 ```
 
-### 200 - Create your First User
+### 200 - Create Your First User
 
 Add your first user from the registration page.
 
