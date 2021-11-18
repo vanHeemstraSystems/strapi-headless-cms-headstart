@@ -22,9 +22,13 @@ For the time being, enter your personal details as the first user (which will ha
 Hence, in my own case:
 
 First name: **Willem**
+
 Last name: **van Heemstra**
+
 Email: **wvanheemstra@icloud.com**
+
 Password: ```== not showing here ==```
+
 Confirmation Password: ```== not showing here ==```
 
 
