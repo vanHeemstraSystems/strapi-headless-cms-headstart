@@ -48,6 +48,8 @@ When asked to use a template, choose **n** for No:
 n
 ```
 
+**Note**: If you get a TIMEOUT in one of the above steps (for example after the question to use a Template), it could be because you are behind a (corporate) proxy. Set your proxy configuration in nmp, as described at https://docs.npmjs.com/cli/v7/using-npm/config#https-proxy
+
 Select **mongo** from the list with the arrow keys and enter.
 
 ```
