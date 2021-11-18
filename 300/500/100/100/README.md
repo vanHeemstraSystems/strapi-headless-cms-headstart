@@ -94,6 +94,28 @@ Char     Hex Code
    |       %7C
 ```
 
+Create a file called ```sample.npmrc``` inside the app directory:
+
+```
+$ cd containers/app
+$ touch sample.npmrc
+```
+
+Add the below content to ```sample.npmrc```:
+
+```
+proxy=http://<username>:<password>@<proxy-hostname>:<proxy-port>
+https-proxy=http://<username>:<password>@<proxy-hostname>:<proxy-port>
+```
+containers/app/sample.npmrc
+
+Edit above ```sample.npmrc``` file with the correct values and copy the file to ```.npmrc```:
+
+```
+$ cd containers/app
+$ cp sample.npmrc .npmrc
+```
+
 Select **mongo** from the list with the arrow keys and enter.
 
 ```
