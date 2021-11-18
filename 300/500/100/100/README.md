@@ -216,9 +216,3 @@ To start your Strapi server in the future, navigate to the ```cms``` folder and 
 $ cd containers/app/cms
 $ yarn develop
 ```
-
-### Create your first User
-
-Add your first user from the registration page.
-
-== WE ARE HERE ==
