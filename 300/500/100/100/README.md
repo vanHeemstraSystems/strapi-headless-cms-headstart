@@ -55,6 +55,45 @@ $ npm config set proxy http://username:password@host:port
 $ npm config set https-proxy http://username:password@host:port
 ```
 
+Here:
+ - username = Use your corporate account username
+ - password = Use your corporate account password (escape special characters, as described below)
+ - host = Use your corporate proxy host
+ - port = Use your corporate proxy port
+
+Special characters (like @ in username, see example below) have to be encoded using %XX syntax, where XX is hexadecimal UTF-8 code.
+
+```
+Char     Hex Code
+-------  --------
+[space]    %20
+   "       %22
+   #       %23
+   $       %24
+   %       %25
+   &       %26
+   '       %27
+   (       %28
+   )       %29
+   *       %2A
+   +       %2B
+   ,       %2C
+   -       %2D
+   .       %2E
+   /       %2F
+   :       %3A
+   ;       %3B
+   <       %3C
+   =       %3D
+   >       %3E
+   ?       %3F
+   @       %40
+   \       %5C
+   ^       %5E
+   `       %60
+   |       %7C
+```
+
 Select **mongo** from the list with the arrow keys and enter.
 
 ```
