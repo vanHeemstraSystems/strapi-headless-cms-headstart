@@ -192,6 +192,8 @@ You can start by doing:
 Done in 2754.12s.  
 ```
 
+**Note**: If the first time the above does not succeed, try following the exact same command again, answering the same questions. It so happened that the second time around it is successful. Just so you know : )
+
 Congratulations !!
 
 Once all the Strapi dependencies are installed navigate to the ```cms``` folder and run ```yarn develop```:
