@@ -101,7 +101,7 @@ Char     Hex Code
    |       %7C
 ```
 
-Check if your proxy new settings have been saved successfully:
+Check if your new proxy settings have been saved successfully:
 
 ```
 $ npm config list
