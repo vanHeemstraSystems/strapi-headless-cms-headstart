@@ -101,6 +101,16 @@ Char     Hex Code
    |       %7C
 ```
 
+Check if your proxy new settings have been saved successfully:
+
+```
+$ npm config list
+```
+
+```
+$ yarn config list
+```
+
 Create a file called ```sample.npmrc``` inside the app directory:
 
 ```
