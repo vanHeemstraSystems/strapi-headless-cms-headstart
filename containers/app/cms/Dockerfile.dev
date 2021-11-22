@@ -1,6 +1,6 @@
 ARG IMAGE_REPOSITORY
 # pull official base image
-FROM ${IMAGE_REPOSITORY}/strapi:3.6.8
+FROM ${IMAGE_REPOSITORY}/strapi/strapi:3.6.8-node14-alpine
 
 # See https://stackoverflow.com/questions/29261811/use-docker-compose-env-variable-in-dockerbuild-file
 ARG PROXY_USER
