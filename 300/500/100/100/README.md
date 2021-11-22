@@ -301,3 +301,45 @@ To start your Strapi server in the future, navigate to the ```cms``` folder and 
 $ cd containers/app/cms
 $ yarn develop
 ```
+
+Inside the parent ```app``` directory update the previously created ***sample environment*** file.
+
+```
+$ cd containers/app
+$ vim sample.env
+```
+
+With the ```sample.env``` file in edit mode, add the following content to it:
+
+```
+...
+DATABASE_CLIENT=mongo
+DATABASE_NAME=<database_name>
+DATABASE_HOST=mongodb
+DATABASE_PORT=28016
+DATABASE_USERNAME=mongo_root
+DATABASE_PASSWORD=mongo_root()
+...
+```
+containers/app/sample.env
+
+These are the values that Docker will use to configure the server running in a Docker container. This example uses the following:
+
+- The root login and password for the database server.
+- An app user and password. These are the credentials the application itself will use, this helps to limit the application’s access to just what it needs.
+- The name of the database and the name of a collection to start with.
+- The value ```DATABASE_HOSTNAME``` is the name to access the database server in the Docker container from our host machine.
+- ```DATABASE_PORT``` is the port that our application will use to access the database. MongoDB runs on port ```27017``` by convention; I like to change it to ```28017``` so I can tell it apart form any local instance of Mongo running on my machine, but that's just a personal preference. For development we use port ```28016``` however.
+
+Copy the ```sample.env``` file:
+
+```
+$ cd containers/app
+$ cp sample.env .env
+```
+
+Replace ```<database_name>``` in ```.env``` file by the values you intend for the application(s), hence here we assume the following values:
+
+```
+DATABASE_NAME=strapi
+```
