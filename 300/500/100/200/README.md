@@ -9,7 +9,14 @@ $ cd containers/app/cms
 $ yarn develop
 ```
 
-## 200 - Create Your First User
+## 200 - Verify MongoDB for Development for Strapi
+
+Verify if collections used by Strapi have been created in MongoDB for Development, by connecting to MongoDB for Development using a tool like Robo3T.
+
+![Robo 3T MongoDB Dev Strapi Screen Shot](robo_3t_mongodb_dev_strapi_screen_shot.png)
+Collections of Strapi in MongoDB for Development
+
+## 300 - Create Your First User
 
 You should be able to visit the ```admin``` panel of your project: http://localhost:1337/admin.
 
@@ -31,6 +38,167 @@ Password: ```== not showing here ==```
 
 Confirmation Password: ```== not showing here ==```
 
+## 400 - Dockerize Strapi
 
+Create a file called ```Dockerfile.dev``` in the ```cms``` directory.
+
+```
+$ cd containers/app/cms
+$ touch Dockerfile.dev
+```
+
+Add the following content to this ```Dockerfile.dev``` file:
+
+```
+ARG IMAGE_REPOSITORY
+# pull official base image
+FROM ${IMAGE_REPOSITORY}/strapi:3.6.8
+
+# See https://stackoverflow.com/questions/29261811/use-docker-compose-env-variable-in-dockerbuild-file
+ARG PROXY_USER
+ARG PROXY_PASSWORD
+ARG PROXY_FQDN
+ARG PROXY_PORT
+# ARG MONGO_INITDB_ROOT_USERNAME
+# ARG MONGO_INITDB_ROOT_PASSWORD
+# ARG APP_USER
+# ARG APP_PWD
+# ARG DB_NAME
+# ARG DB_COLLECTION_NAME
+# ARG MONGO_HOSTNAME
+ARG DATABASE_CLIENT
+ARG DATABASE_NAME
+ARG DATABASE_HOST
+ARG DATABASE_PORT
+ARG DATABASE_USERNAME
+ARG DATABASE_PASSWORD
+
+ENV HTTP_PROXY="http://${PROXY_USER}:${PROXY_PASSWORD}@${PROXY_FQDN}:${PROXY_PORT}"
+ENV HTTPS_PROXY="http://${PROXY_USER}:${PROXY_PASSWORD}@${PROXY_FQDN}:${PROXY_PORT}"
+# ENV MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+# ENV MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+# ENV APP_USER=${APP_USER}
+# ENV APP_PWD=${APP_PWD}
+# ENV DB_NAME=${DB_NAME}
+# ENV DB_COLLECTION_NAME=${DB_COLLECTION_NAME}
+# ENV MONGO_HOSTNAME=${MONGO_HOSTNAME}
+ENV DATABASE_CLIENT=${DATABASE_CLIENT}
+ENV DATABASE_NAME=${DATABASE_NAME}
+ENV DATABASE_HOST=${DATABASE_HOST}
+ENV DATABASE_PORT=${DATABASE_PORT}
+ENV DATABASE_USERNAME=${DATABASE_USERNAME}
+ENV DATABASE_PASSWORD=${DATABASE_PASSWORD}
+
+# set working directory
+# WAS: WORKDIR /app
+
+# add `/app/node_modules/.bin` to $PATH
+# WAS: ENV PATH /app/node_modules/.bin:$PATH
+
+# install app dependencies
+# WAS: COPY package.json ./
+# WAS: COPY package-lock.json ./
+# WAS: RUN npm install --silent
+
+# add app
+# WAS: COPY . ./
+
+# expose port
+EXPOSE 1436
+
+# start app
+# WAS: CMD ["yarn", "develop"]
+```
+containers/app/cms/Dockerfile.dev
+
+***Note***: if you are ***not*** behind a proxy, comment out the following lines in Dockerfile.dev, like so:
+
+```
+# See https://stackoverflow.com/questions/29261811/use-docker-compose-env-variable-in-dockerbuild-file
+# ARG PROXY_USER
+# ARG PROXY_PASSWORD
+# ARG PROXY_FQDN
+# ARG PROXY_PORT
+
+# ENV HTTP_PROXY="http://${PROXY_USER}:${PROXY_PASSWORD}@${PROXY_FQDN}:${PROXY_PORT}"
+# ENV HTTPS_PROXY="http://${PROXY_USER}:${PROXY_PASSWORD}@${PROXY_FQDN}:${PROXY_PORT}"
+```
+containers/app/cms/Dockerfile.dev
+
+Create a file called ```.dockerignore``` inside the ```cms``` directory.
+
+```
+$ cd containers/app/cms
+$ touch .dockerignore 
+```
+
+Add the following content to ```.dockerignore```:
+
+```
+node_modules
+.dockerignore
+Dockerfile.dev
+Dockerfile.prod
+```
+containers/app/cms/.dockerignore
+
+Copy sample files:
+
+```
+$ cd containers/app/cms
+$ cp sample.env .env
+```
+
+Now let us add the ```cms``` service to ```sample.docker-compose.dev.yml``` by this entry:
+
+```
+...
+service:
+...
+  cms:
+    build:
+      context: ./cms
+      dockerfile: Dockerfile.dev
+      args: # from env_file
+        IMAGE_REPOSITORY: ${IMAGE_REPOSITORY}
+        PROXY_USER: ${PROXY_USER}
+        PROXY_PASSWORD: ${PROXY_PASSWORD}
+        PROXY_FQDN: ${PROXY_FQDN}
+        PROXY_PORT: ${PROXY_PORT}
+        # MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+        # MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+        # APP_USER: ${APP_USER}
+        # APP_PWD: ${APP_PWD}
+        # DB_NAME: ${DB_NAME}
+        # DB_COLLECTION_NAME: ${DB_COLLECTION_NAME}
+        # MONGO_HOSTNAME: ${MONGO_HOSTNAME}
+        # MONGO_PORT: 28016
+        DATABASE_CLIENT: ${DATABASE_CLIENT}
+        DATABASE_NAME: ${DATABASE_NAME}
+        DATABASE_HOST: ${DATABASE_HOST}
+        DATABASE_PORT: ${DATABASE_PORT}
+        DATABASE_USERNAME: ${DATABASE_USERNAME}
+        DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+
+    env_file:
+      - .env
+    container_name: cms-dev      
+    ports:
+      - "1436:1337"
+    volumes:
+      - ./cms:/srv/app
+    #  - ./mongodb:/app
+    #  - ./mongodb/scripts/init/:/docker-entrypoint-initdb.d
+    #  - ./mongodb/scripts/init:/home/mongodb # chown -R $USER ./mongodb/scripts/init
+    #  - ./mongodb/scripts/seed/:/home/mongodb/seed      
+      - /app/node_modules
+    #  - mongodb-dev-data:/data/db
+
+# volumes:
+#  cms-dev-data:       
+...
+
+```
+containers/app/sample.docker-compose.dev.yml
 
 == WE ARE HERE ==
