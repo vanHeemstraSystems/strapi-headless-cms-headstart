@@ -3,6 +3,8 @@ strapi-headless-cms-headstart
 
 Based on "Create a food ordering app with Strapi and Next.js" at https://strapi.io/blog/nextjs-react-hooks-strapi-food-app-1
 
+Based on "Strapi in Docker" at https://github.com/strapi/strapi-docker
+
 Based on "Dockerizing a React App" at https://mherman.org/blog/dockerizing-a-react-app/
 
 ## 100 - Introduction
