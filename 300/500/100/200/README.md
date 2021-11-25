@@ -165,14 +165,6 @@ service:
         PROXY_PASSWORD: ${PROXY_PASSWORD}
         PROXY_FQDN: ${PROXY_FQDN}
         PROXY_PORT: ${PROXY_PORT}
-        # MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-        # MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-        # APP_USER: ${APP_USER}
-        # APP_PWD: ${APP_PWD}
-        # DB_NAME: ${DB_NAME}
-        # DB_COLLECTION_NAME: ${DB_COLLECTION_NAME}
-        # MONGO_HOSTNAME: ${MONGO_HOSTNAME}
-        # MONGO_PORT: 28016
         DATABASE_CLIENT: ${DATABASE_CLIENT}
         DATABASE_NAME: ${DATABASE_NAME}
         DATABASE_HOST: ${DATABASE_HOST}
@@ -186,16 +178,8 @@ service:
     ports:
       - "1436:1337"
     volumes:
-      - ./cms:/srv/app
-    #  - ./mongodb:/app
-    #  - ./mongodb/scripts/init/:/docker-entrypoint-initdb.d
-    #  - ./mongodb/scripts/init:/home/mongodb # chown -R $USER ./mongodb/scripts/init
-    #  - ./mongodb/scripts/seed/:/home/mongodb/seed      
-      - /app/node_modules
-    #  - mongodb-dev-data:/data/db
-
-# volumes:
-#  cms-dev-data:       
+      - ./cms:/srv/app      
+      - /app/node_modules      
 ...
 
 ```
