@@ -171,7 +171,7 @@ service:
       - "1436:1337"
     volumes:
       - ./cms:/srv/app      
-      - /app/node_modules      
+      - /cms/node_modules      
 ...
 
 ```
