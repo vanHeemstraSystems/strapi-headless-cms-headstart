@@ -148,10 +148,14 @@ Now let us add the ```cms``` service to ```sample.docker-compose.dev.yml``` by t
 service:
 ...
   cms:
+    secrets:
+      - database_password
+      - proxy_password  
     build:
       context: ./cms
       dockerfile: Dockerfile.dev
       args: # from env_file
+        UNIQUE_NAMESPACE: ${UNIQUE_NAMESPACE}     
         IMAGE_REPOSITORY: ${IMAGE_REPOSITORY}
         PROXY_USER: ${PROXY_USER}
         PROXY_PASSWORD: ${PROXY_PASSWORD}
@@ -163,10 +167,12 @@ service:
         DATABASE_PORT: ${DATABASE_PORT}
         DATABASE_USERNAME: ${DATABASE_USERNAME}
         DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-
+        DATABASE_SSL: ${DATABASE_SSL}
+        AUTHENTICATION_DATABASE: ${AUTHENTICATION_DATABASE}        
+        NODE_ENV: development
     env_file:
       - .env
-    container_name: cms-dev      
+    container_name: ${UNIQUE_NAMESPACE}-cms-dev      
     ports:
       - "1436:1337"
     volumes:
