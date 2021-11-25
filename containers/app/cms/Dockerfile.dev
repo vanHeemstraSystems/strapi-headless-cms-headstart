@@ -32,12 +32,13 @@ ENV NODE_ENV=${NODE_ENV}
 # set working directory
 WORKDIR /srv/app
 
-# add `/app/node_modules/.bin` to $PATH
-# WAS: ENV PATH /app/node_modules/.bin:$PATH
+# add `/srv/app/node_modules/.bin` to $PATH
+ENV PATH /srv/app/node_modules/.bin:$PATH
 
 # install app dependencies
 # WAS: COPY package.json ./
 # WAS: COPY package-lock.json ./
+RUN apk add --update alpine-sdk
 # WAS: RUN npm install --silent
 
 # add app
