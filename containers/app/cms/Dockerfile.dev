@@ -38,7 +38,7 @@ ENV PATH /srv/app/node_modules/.bin:$PATH
 # install app dependencies
 # WAS: COPY package.json ./
 # WAS: COPY package-lock.json ./
-RUN apk add --update alpine-sdk
+RUN apk add --update alpine-sdk python3 py3-pip
 # WAS: RUN npm install --silent
 
 # add app
