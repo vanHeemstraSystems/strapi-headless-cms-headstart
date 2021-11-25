@@ -177,4 +177,6 @@ service:
 ```
 containers/app/sample.docker-compose.dev.yml
 
+***Note***: The volumes option ```./cms:/srv/app``` uses the service's folder (here: ```containers/app/cms```) on your computer that will be shared with the docker container (at ```/srv/app```).
+
 == WE ARE HERE ==
