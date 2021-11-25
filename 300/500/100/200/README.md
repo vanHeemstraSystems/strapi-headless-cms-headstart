@@ -179,4 +179,39 @@ containers/app/sample.docker-compose.dev.yml
 
 ***Note***: The volumes option ```./cms:/srv/app``` uses the service's folder (here: ```containers/app/cms```) on your computer that will be shared with the docker container (at ```/srv/app```).
 
+Before running docker-compose, make sure when on a Linux RHEL server, set enforcing to permissive, like so:
+
+```
+$ getenforce
+$ Enforcing
+$ sudo setenforce 0
+$ getenforce
+$ Permissive
+```
+
+```
+$ cd containers/app
+$ docker-compose --file docker-compose.dev.yml --project-name cms-dev up --build -d
+```
+
+**Note**:   
+```
+-p, --project-name NAME     Specify an alternate project name
+                              (default: directory name)
+``` 
+
+Fingers crossed ... !
+
+If successful, you can browse to the start page of the new React App, which will look like below:
+
+![React App Screen Shot](react_app_screen_shot.png)
+
+http://localhost:8080
+
+Now check if we can also see the ```strapi``` server at http://localhost:1436
+
+![CMS Service Screen Shot](cms_service.png)
+
+http://localhost:1436
+
 == WE ARE HERE ==
