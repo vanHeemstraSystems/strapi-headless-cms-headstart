@@ -90,6 +90,7 @@ WORKDIR /srv/app
 # install app dependencies
 # WAS: COPY package.json ./
 # WAS: COPY package-lock.json ./
+RUN apk add --update alpine-sdk
 # WAS: RUN npm install --silent
 
 # add app
@@ -102,6 +103,8 @@ EXPOSE 1436
 # WAS: CMD ["yarn", "develop"]
 ```
 containers/app/cms/Dockerfile.dev
+
+***Note***: we add the alpine software development kit (sdk) ```alpine-sdk``` to be able to build missing libraries.
 
 ***Note***: if you are ***not*** behind a proxy, comment out the following lines in Dockerfile.dev, like so:
 
