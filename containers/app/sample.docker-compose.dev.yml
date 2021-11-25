@@ -1,20 +1,30 @@
 version: "3.7"
 
+secrets:
+  database_password:
+    file: ./secrets/.database_password
+  proxy_password:
+    file: ./secrets/.proxy_password
+
 # See https://stackoverflow.com/questions/29261811/use-docker-compose-env-variable-in-dockerbuild-file
 services:
   webui:
+    secrets:
+      - proxy_password  
     build:
       context: ./webui
       dockerfile: Dockerfile.dev
       args: # from env_file
+        UNIQUE_NAMESPACE: ${UNIQUE_NAMESPACE}
         IMAGE_REPOSITORY: ${IMAGE_REPOSITORY}
         PROXY_USER: ${PROXY_USER}
         PROXY_PASSWORD: ${PROXY_PASSWORD}
         PROXY_FQDN: ${PROXY_FQDN}
         PROXY_PORT: ${PROXY_PORT}
+        NODE_ENV: development       
     env_file:
       - .env
-    container_name: webui-dev      
+    container_name: ${UNIQUE_NAMESPACE}-webui-dev  
     ports:
       - "8080:3000"
     volumes:
@@ -24,43 +34,32 @@ services:
       - CHOKIDAR_USEPOLLING=true
 
   cms:
+    secrets:
+      - database_password
+      - proxy_password  
     build:
       context: ./cms
       dockerfile: Dockerfile.dev
       args: # from env_file
+        UNIQUE_NAMESPACE: ${UNIQUE_NAMESPACE}     
         IMAGE_REPOSITORY: ${IMAGE_REPOSITORY}
         PROXY_USER: ${PROXY_USER}
         PROXY_PASSWORD: ${PROXY_PASSWORD}
         PROXY_FQDN: ${PROXY_FQDN}
         PROXY_PORT: ${PROXY_PORT}
-        # MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-        # MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-        # APP_USER: ${APP_USER}
-        # APP_PWD: ${APP_PWD}
-        # DB_NAME: ${DB_NAME}
-        # DB_COLLECTION_NAME: ${DB_COLLECTION_NAME}
-        # MONGO_HOSTNAME: ${MONGO_HOSTNAME}
-        # MONGO_PORT: 28016
         DATABASE_CLIENT: ${DATABASE_CLIENT}
         DATABASE_NAME: ${DATABASE_NAME}
         DATABASE_HOST: ${DATABASE_HOST}
         DATABASE_PORT: ${DATABASE_PORT}
         DATABASE_USERNAME: ${DATABASE_USERNAME}
         DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-
+        DATABASE_SSL: ${DATABASE_SSL}
+        AUTHENTICATION_DATABASE: ${AUTHENTICATION_DATABASE}
+        NODE_ENV: development
     env_file:
       - .env
-    container_name: cms-dev      
+    container_name: ${UNIQUE_NAMESPACE}-cms-dev      
     ports:
       - "1436:1337"
     volumes:
       - ./cms:/srv/app
-    #  - ./mongodb:/app
-    #  - ./mongodb/scripts/init/:/docker-entrypoint-initdb.d
-    #  - ./mongodb/scripts/init:/home/mongodb # chown -R $USER ./mongodb/scripts/init
-    #  - ./mongodb/scripts/seed/:/home/mongodb/seed      
-      - /app/node_modules
-    #  - mongodb-dev-data:/data/db
-
-# volumes:
-#  cms-dev-data:
