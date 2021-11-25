@@ -90,7 +90,7 @@ WORKDIR /srv/app
 # install app dependencies
 # WAS: COPY package.json ./
 # WAS: COPY package-lock.json ./
-RUN apk add --update alpine-sdk
+RUN apk add --update alpine-sdk python3 py3-pip
 # WAS: RUN npm install --silent
 
 # add app
@@ -104,7 +104,7 @@ EXPOSE 1436
 ```
 containers/app/cms/Dockerfile.dev
 
-***Note***: we add the alpine software development kit (sdk) ```alpine-sdk``` to be able to build missing libraries.
+***Note***: we add the alpine software development kit (sdk) ```alpine-sdk``` and ```python3 py3-pip``` to be able to build missing libraries.
 
 ***Note***: if you are ***not*** behind a proxy, comment out the following lines in Dockerfile.dev, like so:
 
