@@ -22,7 +22,8 @@ services:
         PROXY_PASSWORD: ${PROXY_PASSWORD}
         PROXY_FQDN: ${PROXY_FQDN}
         PROXY_PORT: ${PROXY_PORT}
-        NODE_ENV: development       
+        NODE_ENV: development
+    user: 1000:1000 # node user    
     env_file:
       - .env
     container_name: ${UNIQUE_NAMESPACE}-webui-dev  
