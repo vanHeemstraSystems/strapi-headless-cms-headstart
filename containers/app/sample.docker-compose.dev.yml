@@ -8,6 +8,7 @@ secrets:
 
 # See https://stackoverflow.com/questions/29261811/use-docker-compose-env-variable-in-dockerbuild-file
 services:
+
   webui:
     secrets:
       - proxy_password  
@@ -56,6 +57,9 @@ services:
         DATABASE_SSL: ${DATABASE_SSL}
         AUTHENTICATION_DATABASE: ${AUTHENTICATION_DATABASE}
         NODE_ENV: development
+        BASE_VERSION: 14-alpine
+        STRAPI_VERSION: 3.6.8
+        STRAPI_LOG_LEVEL: debug
     env_file:
       - .env
     container_name: ${UNIQUE_NAMESPACE}-cms-dev      
