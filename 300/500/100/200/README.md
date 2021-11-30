@@ -211,6 +211,13 @@ $ docker-compose --file docker-compose.dev.yml --project-name cms-dev up --build
 
 Fingers crossed ... !
 
+***Note***: If it failed with ```standard_init_linux.go:219: exec user process caused: permission denied```, you may decide to give read/write/execute (rwx) rights to all users, group, and others in Linux for the ```cms``` folder as follows: 
+
+```
+$ cd containers/app
+$ chmod ugo+rwx cms
+```
+
 ***Note***: If it failed with ```exec user process caused „no such file or directory```, read https://futurestud.io/tutorials/how-to-fix-exec-user-process-caused-no-such-file-or-directory-in-docker
 
 ***Note***: If you get something like ```[Error: EACCES: permission denied, rmdir '/srv/app'] ```, read https://github.com/strapi/strapi-docker/issues/107
