@@ -215,7 +215,7 @@ Fingers crossed ... !
 
 ```
 $ cd containers/app
-$ chmod ugo+rwx cms
+$ chmod -R ugo+rwx cms
 ```
 
 ***Note***: If it failed with ```exec user process caused „no such file or directory```, read https://futurestud.io/tutorials/how-to-fix-exec-user-process-caused-no-such-file-or-directory-in-docker
