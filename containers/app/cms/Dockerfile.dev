@@ -1,6 +1,8 @@
 ARG IMAGE_REPOSITORY
+ARG BASE_VERSION
 # pull official base image
-FROM ${IMAGE_REPOSITORY}/strapi/strapi:3.6.8-node14-alpine
+FROM ${IMAGE_REPOSITORY}/node:14-alpine as BUILD_IMAGE
+# FROM ${IMAGE_REPOSITORY}/strapi/base:${BASE_VERSION} as BUILD_IMAGE: THROWS ERRORS
 
 # See https://stackoverflow.com/questions/29261811/use-docker-compose-env-variable-in-dockerbuild-file
 ARG PROXY_USER
@@ -16,6 +18,8 @@ ARG DATABASE_PASSWORD
 ARG DATABASE_SSL
 ARG AUTHENTICATION_DATABASE
 ARG NODE_ENV
+ARG STRAPI_VERSION
+ARG STRAPI_LOG_LEVEL
 
 ENV HTTP_PROXY="http://${PROXY_USER}:${PROXY_PASSWORD}@${PROXY_FQDN}:${PROXY_PORT}"
 ENV HTTPS_PROXY="http://${PROXY_USER}:${PROXY_PASSWORD}@${PROXY_FQDN}:${PROXY_PORT}"
@@ -28,24 +32,140 @@ ENV DATABASE_PASSWORD=${DATABASE_PASSWORD}
 ENV DATABASE_SSL=${DATABASE_SSL}
 ENV AUTHENTICATION_DATABASE=${AUTHENTICATION_DATABASE}
 ENV NODE_ENV=${NODE_ENV}
+ENV STRAPI_LOG_LEVEL=${STRAPI_LOG_LEVEL}
+
+# install strapi globally
+RUN yarn global add strapi@${STRAPI_VERSION}
+
+# make strapi directory owned by node user
+RUN mkdir /srv/app && chown 1000:1000 -R /srv/app
 
 # set working directory
 WORKDIR /srv/app
+
+# set volume
+VOLUME /srv/app
 
 # add `/srv/app/node_modules/.bin` to $PATH
 ENV PATH /srv/app/node_modules/.bin:$PATH
 
 # install app dependencies
-# WAS: COPY package.json ./
-# WAS: COPY package-lock.json ./
-RUN apk add --update alpine-sdk python3 py3-pip
-# WAS: RUN npm install --silent
+COPY package.json ./
+
+# See also: https://forum.strapi.io/t/strapi-installation-fails-due-to-blocked-npm-github-repo-is-there-any-other-offline-way-to-setup-strapi/452/3
+# If sharp-libvips library cannot be downloaded (due to proxy or firewall), below information is given:
+# sharp: Downloading https://github.com/lovell/sharp-libvips/releases/download/v8.10.6/libvips-8.10.6-linuxmusl-x64.tar.br
+# sharp: Installation error: tunneling socket could not be established, statusCode=407
+# sharp: Attempting to build from source via node-gyp but this may fail due to the above error
+# sharp: Please see https://sharp.pixelplumbing.com/install for required dependencies
+#
+# Building from source requires:
+# - C++11 compiler
+# - node-gyp and its dependencies, see https://github.com/nodejs/node-gyp#installation
+
+# Handle below potential error
+# gyp ERR! find Python 
+# gyp ERR! find Python Python is not set from command line or npm configuration
+# gyp ERR! find Python Python is not set from environment variable PYTHON
+# gyp ERR! find Python checking if "python" can be used
+# gyp ERR! find Python - "python" is not in PATH or produced an error
+# gyp ERR! find Python checking if "python2" can be used
+# gyp ERR! find Python - "python2" is not in PATH or produced an error
+# gyp ERR! find Python checking if "python3" can be used
+# gyp ERR! find Python - "python3" is not in PATH or produced an error
+# gyp ERR! find Python 
+# gyp ERR! find Python **********************************************************
+# gyp ERR! find Python You need to install the latest version of Python.
+# gyp ERR! find Python Node-gyp should be able to find and use Python. If not,
+# gyp ERR! find Python you can try one of the following options:
+# gyp ERR! find Python - Use the switch --python="/path/to/pythonexecutable"
+# gyp ERR! find Python   (accepted by both node-gyp and npm)
+# gyp ERR! find Python - Set the environment variable PYTHON
+# gyp ERR! find Python - Set the npm configuration variable python:
+# gyp ERR! find Python   npm config set python "/path/to/pythonexecutable"
+# gyp ERR! find Python For more information consult the documentation at:
+# gyp ERR! find Python https://github.com/nodejs/node-gyp#installation
+# gyp ERR! find Python **********************************************************
+# gyp ERR! find Python 
+# gyp ERR! configure error 
+# gyp ERR! stack Error: Could not find any Python installation to use
+
+RUN apk add --update python3 py3-pip
+# RUN apk add --update alpine-sdk python3 py3-pip
+
+# Handle below potential error
+# gyp ERR! build error 
+# gyp ERR! stack Error: not found: make
+# gyp ERR! stack     at getNotFoundError (/usr/local/lib/node_modules/npm/node_modules/which/which.js:13:12)
+# gyp ERR! stack     at F (/usr/local/lib/node_modules/npm/node_modules/which/which.js:68:19)
+# gyp ERR! stack     at E (/usr/local/lib/node_modules/npm/node_modules/which/which.js:80:29)
+# gyp ERR! stack     at /usr/local/lib/node_modules/npm/node_modules/which/which.js:89:16
+# gyp ERR! stack     at /usr/local/lib/node_modules/npm/node_modules/isexe/index.js:42:5
+# gyp ERR! stack     at /usr/local/lib/node_modules/npm/node_modules/isexe/mode.js:8:5
+# gyp ERR! stack     at FSReqCallback.oncomplete (fs.js:191:21)
+
+RUN apk add --update make
+
+# Handle below potential error
+# make: Entering directory '/srv/app/node_modules/sharp/build'
+#   CC(target) Release/obj.target/nothing/../node-addon-api/nothing.o
+# make: cc: No such file or directory
+# make: *** [../node-addon-api/nothing.target.mk:107: Release/obj.target/nothing/../node-addon-api/nothing.o] Error 127
+# make: Leaving directory '/srv/app/node_modules/sharp/build'
+# gyp ERR! build error 
+# gyp ERR! stack Error: `make` failed with exit code: 2
+# gyp ERR! stack     at ChildProcess.onExit (/usr/local/lib/node_modules/npm/node_modules/node-gyp/lib/build.js:194:23)
+# gyp ERR! stack     at ChildProcess.emit (events.js:400:28)
+# gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:282:12)
+
+# Install gcc the quickest way, source https://wiki.alpinelinux.org/wiki/GCC
+RUN apk add build-base
+
+# Handle below potential error
+# make: Entering directory '/srv/app/node_modules/sharp/build'
+#   CC(target) Release/obj.target/nothing/../node-addon-api/nothing.o
+#   AR(target) Release/obj.target/../node-addon-api/nothing.a
+#   COPY Release/nothing.a
+#   TOUCH Release/obj.target/libvips-cpp.stamp
+#   CXX(target) Release/obj.target/sharp/src/common.o
+# ../src/common.cc:24:10: fatal error: vips/vips8: No such file or directory
+#    24 | #include <vips/vips8>
+#       |          ^~~~~~~~~~~~
+# compilation terminated.
+# make: *** [sharp.target.mk:139: Release/obj.target/sharp/src/common.o] Error 1
+# make: Leaving directory '/srv/app/node_modules/sharp/build'
+# gyp ERR! build error 
+# gyp ERR! stack Error: `make` failed with exit code: 2
+# gyp ERR! stack     at ChildProcess.onExit (/usr/local/lib/node_modules/npm/node_modules/node-gyp/lib/build.js:194:23)
+# gyp ERR! stack     at ChildProcess.emit (events.js:400:28)
+# gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:282:12)
+
+# See also: https://lifesaver.codes/answer/fatal-error-vips-vips8-file-not-found
+# Pinning minipass to v2.7.0 should workaround this for now.
+#
+# For those using yarn, you can add the following to your package.json:
+#
+#  "resolutions": {
+#    "minipass": "2.7.0"
+#  },
+
+# See also: https://github.com/libvips/libvips/issues/1142
+RUN apk add vips-dev fftw-dev build-base --no-cache \
+            --repository http://dl-3.alpinelinux.org/alpine/edge/community \
+            --repository http://dl-3.alpinelinux.org/alpine/edge/main
+
+# See also https://stackoverflow.com/questions/54409953/cant-install-sharp
+RUN yarn install --unsafe-perm
 
 # add app
-# WAS: COPY . ./
+COPY . .
 
 # expose port
 EXPOSE 1436
 
+# docker entry point
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
+
 # start app
-# WAS: CMD ["yarn", "develop"]
+# WAS: CMD ["strapi", "develop"]
