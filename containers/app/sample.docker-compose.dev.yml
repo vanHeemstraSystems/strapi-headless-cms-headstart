@@ -22,8 +22,7 @@ services:
         PROXY_PASSWORD: ${PROXY_PASSWORD}
         PROXY_FQDN: ${PROXY_FQDN}
         PROXY_PORT: ${PROXY_PORT}
-        NODE_ENV: development
-    user: 1000:1000 # node user    
+        NODE_ENV: development    
     env_file:
       - .env
     container_name: ${UNIQUE_NAMESPACE}-webui-dev  
@@ -61,6 +60,7 @@ services:
         BASE_VERSION: 14-alpine
         STRAPI_VERSION: 3.6.8
         STRAPI_LOG_LEVEL: debug
+    user: 1000:1000 # node user    
     env_file:
       - .env
     container_name: ${UNIQUE_NAMESPACE}-cms-dev      
