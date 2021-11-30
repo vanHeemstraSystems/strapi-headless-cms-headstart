@@ -211,6 +211,10 @@ $ docker-compose --file docker-compose.dev.yml --project-name cms-dev up --build
 
 Fingers crossed ... !
 
+***Note***: If it failed with ```exec user process caused „no such file or directory```, read https://futurestud.io/tutorials/how-to-fix-exec-user-process-caused-no-such-file-or-directory-in-docker
+
+***Note***: If you get something like ```[Error: EACCES: permission denied, rmdir '/srv/app'] ```, read https://github.com/strapi/strapi-docker/issues/107
+
 If successful, you can browse to the start page of the new React App, which will look like below:
 
 ![React App Screen Shot](react_app_screen_shot.png)
