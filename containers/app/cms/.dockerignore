@@ -1,4 +1,9 @@
 node_modules
+build
+docs
+.git
+.cache
+.env
 .dockerignore
 Dockerfile.dev
 Dockerfile.prod
