@@ -5,6 +5,8 @@ Based on "Create a food ordering app with Strapi and Next.js" at https://strapi.
 
 Based on "Strapi in Docker" at https://github.com/strapi/strapi-docker
 
+Based on "How to run a Strapi Dev Stack with Docker Compose" at https://strapi.io/blog/how-to-run-a-strapi-dev-stack-with-docker-compose
+
 Based on "Dockerizing a React App" at https://mherman.org/blog/dockerizing-a-react-app/
 
 ## 100 - Introduction
