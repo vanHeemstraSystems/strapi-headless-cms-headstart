@@ -211,7 +211,7 @@ $ docker-compose --file docker-compose.dev.yml --project-name cms-dev up --build
 
 Fingers crossed ... !
 
-***Note***: If it failed with ```standard_init_linux.go:219: exec user process caused: permission denied```, you may decide to give read/write/execute (rwx) rights to all users, group, and others in Linux for the ```cms``` folder as follows: 
+***Note***: If it failed with ```standard_init_linux.go:219: exec user process caused: permission denied```, you may decide to give read/write/execute (rwx) rights to all users, group, and others in Linux for the ```cms``` folder **RECURSIVELY** as follows: 
 
 ```
 $ cd containers/app
