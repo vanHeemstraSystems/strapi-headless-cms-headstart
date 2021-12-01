@@ -60,8 +60,8 @@ COPY . .
 # expose port
 EXPOSE 1436
 
-# user
-USER ${USER}
+# user root
+USER root
 
 # docker entry point
 COPY docker-entrypoint.sh /usr/local/bin/
