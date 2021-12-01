@@ -60,7 +60,7 @@ services:
         BASE_VERSION: 14-alpine
         STRAPI_VERSION: 3.6.8
         STRAPI_LOG_LEVEL: debug
-    user: 1000:1000 # node user    
+    user: ${USER}    
     env_file:
       - .env
     container_name: ${UNIQUE_NAMESPACE}-cms-dev      
