@@ -24,7 +24,7 @@ services:
         PROXY_PORT: ${PROXY_PORT}
         NODE_ENV: development    
     env_file:
-      - .env
+      - .env.dev
     container_name: ${UNIQUE_NAMESPACE}-webui-dev  
     ports:
       - "8080:3000"
@@ -62,7 +62,7 @@ services:
         STRAPI_LOG_LEVEL: debug
         USER: ${USER}   
     env_file:
-      - .env
+      - .env.dev
     container_name: ${UNIQUE_NAMESPACE}-cms-dev      
     ports:
       - "1436:1337"
