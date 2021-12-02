@@ -13,7 +13,7 @@ services:
         PROXY_FQDN: ${PROXY_FQDN}
         PROXY_PORT: ${PROXY_PORT}
     env_file:
-      - .env
+      - .env.prod
     container_name: webui-prod  
     ports:
       - "80:80"
