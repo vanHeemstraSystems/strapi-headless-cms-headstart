@@ -9,6 +9,8 @@ Based on "How to run a Strapi Dev Stack with Docker Compose" at https://strapi.i
 
 Based on "Dockerizing a React App" at https://mherman.org/blog/dockerizing-a-react-app/
 
+Based on "Connecting your Gatsby App to Strapi" at https://www.youtube.com/watch?v=A9-v7HrnctA , related to https://github.com/vanHeemstraSystems/gatsbyjs-headstart
+
 ## 100 - Introduction
 
 See [README.md](./100/README.md)
